@@ -1,7 +1,7 @@
 use crate::block::Block;
 
 pub struct Blockchain {
-    blocks: Vec<Block>
+    pub blocks: Vec<Block>
 }
 
 impl Blockchain {
