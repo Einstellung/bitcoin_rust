@@ -1,2 +1,6 @@
 /target
 /blockchain.db/**
+.DS_Store
+blockchain.db/CURRENT
+blockchain.db/LOG
+blockchain.db/LOG.old
