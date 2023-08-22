@@ -74,11 +74,13 @@ impl<'a> ProofOfWork<'a> {
 
 #[cfg(test)]
 mod tests {
-    use num_bigint::BigUint;
     #[test]
     fn test() {
-        let mut target = BigUint::from(1u32);
-        target = target << (256 - 3);
-        println!("target value result {}", target.bits());
+        let bytes: &[u8] = &[0x78, 0x56, 0x34, 0x12, 0x44];
+        println!("len value: {}", bytes.len());
+        println!("byte val: {:?}", bytes);
+
+        let last_four: &[u8] = &bytes[bytes.len() - 4..];
+        println!("{:?}", last_four);
     }
 }
