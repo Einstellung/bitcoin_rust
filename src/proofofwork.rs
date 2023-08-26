@@ -1,7 +1,6 @@
 use crate::block::Block;
 use num_bigint::BigUint;
 use sha2::{Sha256, Digest};
-use crate::utils;
 
 // difficulty level
 const TARGET_BITS: u16 = 3;
@@ -25,7 +24,7 @@ impl<'a> ProofOfWork<'a> {
     fn prepare_data(&self, nonce: u32) -> Vec<u8> {
         let data = vec![
             &self.block.prev_block_hash,
-            &self.block.data,
+            &self.block.hash_transaction(),
             &self.block.time_stamp.to_le_bytes() as &[u8],
             &TARGET_BITS.to_le_bytes(),
             &nonce.to_le_bytes(),
@@ -41,7 +40,6 @@ impl<'a> ProofOfWork<'a> {
         let mut hash = Vec::new();
         let mut hasher = Sha256::new();
 
-        println!("Mining the block containing {}", utils::hex_string(&self.block.data));
         while nonce < MAT_NONCE {
             hash.clear();
 
